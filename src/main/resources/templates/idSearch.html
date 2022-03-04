@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>Book ID Search</h1>
-    <form action="#" th:action="@{/idSearch}" th:object="${bookSearch}" method="post">
+    <form action="/idSearch" method="get">
         <p>Book ID:
-            <input type="text" th:field="*{searchTerm}" />
+            <input type="text" name="bookId" />
         </p>
         <p>
             <input type="submit" value="Search" />

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Book Information</h1>
+    <form action="#" th:action="@{/addBook}" th:object="${book}" method="post">
+        <p>Title: <input type="text" th:field="*{title}" /></p>
+        <p>Author: <input type="text" th:field="*{author}" /></p>
+        <p>Cover: <input type="text" th:field="*{cover}" /></p>
+        <p><input type="submit" value="Save" /></p>
+    </form>
+</body>
+</html>

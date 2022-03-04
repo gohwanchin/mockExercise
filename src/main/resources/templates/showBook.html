@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book</title>
 </head>
-<body>
+<body th:object="${book}">
     <h1>Book Information</h1>
-    <p>Book Search ID: <p th:text="${bookIdSearch}"></p></p>
+    <p>ID: <p th:text="*{id}"></p></p>
+    <p>Title: <p th:text="*{title}"></p></p>
+    <p>Author: <p th:text="*{author}"></p></p>
+    <p>Cover: <p th:text="*{cover}"></p></p>
 </body>
 </html>
