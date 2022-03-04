@@ -11,6 +11,7 @@
     <p>ID: <p th:text="*{id}"></p></p>
     <p>Title: <p th:text="*{title}"></p></p>
     <p>Author: <p th:text="*{author}"></p></p>
-    <p>Cover: <p th:text="*{cover}"></p></p>
+    <!-- Cover location in format /thumbnails/cover.jpg -->
+    <p>Cover: <img th:src="@{*{cover}}"></p></p>
 </body>
 </html>
