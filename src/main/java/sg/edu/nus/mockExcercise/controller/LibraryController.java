@@ -4,6 +4,8 @@ import sg.edu.nus.mockExcercise.model.Book;
 import sg.edu.nus.mockExcercise.model.BookSearch;
 import sg.edu.nus.mockExcercise.service.BookRepo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,5 +42,12 @@ public class LibraryController {
     public String bookForm(Model model){
         model.addAttribute("book", new Book());
         return "addBook";
+    }
+
+    @GetMapping("/titleSearch")
+    public String findByTitle(@RequestParam(name = "searchTerm") String searchTerm, Model model){
+        List<Book> books = service.findBySearchTerm(searchTerm);
+        model.addAttribute("books", books);
+        return "titleSearch";
     }
 }

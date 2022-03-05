@@ -1,6 +1,8 @@
 package sg.edu.nus.mockExcercise.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -34,6 +36,7 @@ public class BookRepo implements RedisRepo {
             .multiGet("bookList_Map", fromBookList).stream()
             .filter(Book.class::isInstance).map(Book.class::cast)
             .toList();
-        return books;
+        List<Book> bookResults = books.stream().filter(book -> searchTerm.contains(book.getTitle())).collect(Collectors.toList());
+        return bookResults;
     }
 }
