@@ -1,10 +1,11 @@
 package sg.edu.nus.mockExcercise.controller;
 
 import sg.edu.nus.mockExcercise.model.Book;
-import sg.edu.nus.mockExcercise.model.BookSearch;
 import sg.edu.nus.mockExcercise.service.BookRepo;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LibraryController {
+    private Logger logger = Logger.getLogger(LibraryController.class.getName());
+
     @Autowired
     BookRepo service;
 
@@ -26,14 +29,14 @@ public class LibraryController {
 
     @GetMapping("/idSearch")
     public String findById(@RequestParam(name = "bookId") String bookId, Model model){
-        Book book = service.findById(bookId);
+        Book book = service.findByBookId(bookId);
         model.addAttribute("book", book);
         return "showBook";
     }
 
     @PostMapping("/addBook")
     public String addBook(@ModelAttribute Book book, Model model){
-        service.save(book);
+        service.saveBook(book);
         model.addAttribute("book", book);
         return "showBook";
     }
@@ -47,6 +50,7 @@ public class LibraryController {
     @GetMapping("/titleSearch")
     public String findByTitle(@RequestParam(name = "searchTerm") String searchTerm, Model model){
         List<Book> books = service.findBySearchTerm(searchTerm);
+        logger.log(Level.INFO, "Result size: " + books.size());
         model.addAttribute("books", books);
         return "titleSearch";
     }

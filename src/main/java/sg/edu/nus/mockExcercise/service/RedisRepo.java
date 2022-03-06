@@ -8,7 +8,7 @@ import sg.edu.nus.mockExcercise.model.Book;
 
 @Repository
 public interface RedisRepo {
-    public void save(final Book book);
-    public Book findById(final String bookId);
+    public void saveBook(final Book book);
+    public Book findByBookId(final String bookId);
     public List<Book> findBySearchTerm(final String searchTerm);
 }

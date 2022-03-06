@@ -1,7 +1,5 @@
 package sg.edu.nus.mockExcercise.model;
 
-import org.springframework.stereotype.Controller;
-
 public class BookSearch {
     private String searchTerm;
 

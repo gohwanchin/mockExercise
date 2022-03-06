@@ -1,7 +1,6 @@
 package sg.edu.nus.mockExcercise.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +15,13 @@ public class BookRepo implements RedisRepo {
     RedisTemplate<String, Object> redisTemplate;
 
     @Override
-    public void save(final Book book){
+    public void saveBook(final Book book){
         redisTemplate.opsForList().leftPush("bookList", book.getId());
         redisTemplate.opsForHash().put("bookList_Map",book.getId(),book);
     }
 
     @Override
-    public Book findById(final String bookId){
+    public Book findByBookId(final String bookId){
         Book result = (Book)redisTemplate.opsForHash()
             .get("bookList_Map", bookId);
         return result;
@@ -36,7 +35,10 @@ public class BookRepo implements RedisRepo {
             .multiGet("bookList_Map", fromBookList).stream()
             .filter(Book.class::isInstance).map(Book.class::cast)
             .toList();
-        List<Book> bookResults = books.stream().filter(book -> searchTerm.contains(book.getTitle())).collect(Collectors.toList());
+        List<Book> bookResults = books.stream()
+            .filter(book -> book.getTitle().contains(searchTerm))
+            .collect(Collectors.toList());
+            //.sorted(Comparator.comparing(Book::getTitle))
         return bookResults;
     }
 }
