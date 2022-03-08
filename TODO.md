@@ -3,6 +3,6 @@
 - [x] Custom sort
 - [x] Title and author search page
 - [x] Sort buttons
-- [ ] Show cover thumbnails
+- [x] Show cover thumbnails
 - [ ] Fix page number formatting
 - [ ] Image upload
