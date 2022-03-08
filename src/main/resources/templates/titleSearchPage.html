@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Cover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book: ${bookPage.content}">
+                <td th:text="${book.id}" />
+                <td th:text="${book.title}" />
+                <td th:text="${book.author}" />
+                <td th:text="${book.cover}" />
+            </tr>
+        </tbody>
+    </table>
+    <div th:if="${bookPage.totalPages > 0}" class="pagination"
+        th:each="pageNumber: ${pageNumbers}">
+        <a th:href="@{/titleSearch(searchTerm=${searchTerm}, size=${bookPage.size}, page=${pageNumber}-1)}"
+            th:text="${pageNumber}"
+            th:class="${pageNumber==bookPage.number+1} ? active"></a>
+    </div>
+</body>
+</html>

@@ -6,8 +6,11 @@ import sg.edu.nus.mockExcercise.service.BookRepo;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,10 +51,21 @@ public class LibraryController {
     }
 
     @GetMapping("/titleSearch")
-    public String findByTitle(@RequestParam(name = "searchTerm") String searchTerm, Model model){
-        List<Book> books = service.findBySearchTerm(searchTerm);
-        logger.log(Level.INFO, "Result size: " + books.size());
-        model.addAttribute("books", books);
-        return "titleSearch";
+    public String findByTitle(@RequestParam(defaultValue = "") String searchTerm, 
+    @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size,Model model){
+        //List<Book> books = service.findBySearchTerm(searchTerm, page, size);
+        Page<Book> bookPage = service.findBySearchTerm(searchTerm, page, size);
+        //logger.log(Level.INFO, "Result size: " + books.size());
+        //model.addAttribute("books", books);
+        model.addAttribute("bookPage", bookPage);
+
+        int totalPages = bookPage.getTotalPages();
+        if (totalPages > 0){
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+            .boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        model.addAttribute("searchTerm", searchTerm);
+        return "titleSearchPage";
     }
 }
