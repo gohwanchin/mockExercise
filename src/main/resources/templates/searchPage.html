@@ -28,6 +28,26 @@
             </tr>
         </tbody>
     </table>
+    <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
+    field=title, alphabetical=true,
+    size=${bookPage.size}, page=${bookPage.number})}">
+        <button>Sort title A-Z</button>
+    </a>
+    <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
+    field=title, alphabetical=false,
+    size=${bookPage.size}, page=${bookPage.number})}">
+        <button>Sort title Z-A</button>
+    </a>
+    <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
+    field=author, alphabetical=true,
+    size=${bookPage.size}, page=${bookPage.number})}">
+        <button>Sort author A-Z</button>
+    </a>
+    <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
+    field=author, alphabetical=false,
+    size=${bookPage.size}, page=${bookPage.number})}">
+        <button>Sort author Z-A</button>
+    </a>
     <div th:if="${bookPage.totalPages > 0}" class="pagination" th:each="pageNumber: ${pageNumbers}">
         <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
         field=${field}, alphabetical=${alphabetical},

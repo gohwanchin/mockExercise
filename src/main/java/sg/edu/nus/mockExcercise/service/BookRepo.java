@@ -50,7 +50,8 @@ public class BookRepo implements RedisRepo {
                 .filter(Book.class::isInstance).map(Book.class::cast)
                 .toList();
         logger.log(Level.INFO, "Books obtained");
-        // Filters book list based on search terms (case-senstive)and default sorts A-Z
+        // Filters book list based on search terms (case-senstive) and default sort
+        // title A-Z
         List<Book> bookResults = books.stream()
                 .filter(book -> book.getTitle().contains(titleSearch))
                 .filter(book -> book.getAuthor().contains(authorSearch))

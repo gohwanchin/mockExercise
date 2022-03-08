@@ -2,7 +2,7 @@
 - [x] Search by author
 - [x] Custom sort
 - [x] Title and author search page
-- [ ] Sort buttons
+- [x] Sort buttons
 - [ ] Show cover thumbnails
 - [ ] Fix page number formatting
 - [ ] Image upload
