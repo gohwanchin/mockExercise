@@ -1,0 +1,8 @@
+- [x] Separate pagination and search functions
+- [x] Search by author
+- [x] Custom sort
+- [ ] Title and author search page
+- [ ] Sort buttons
+- [ ] Show cover thumbnails
+- [ ] Fix page number formatting
+- [ ] Image upload

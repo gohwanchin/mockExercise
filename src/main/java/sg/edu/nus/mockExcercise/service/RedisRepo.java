@@ -13,5 +13,9 @@ public interface RedisRepo {
 
     public Book findByBookId(final String bookId);
 
-    public Page<Book> findBySearchTerm(final String searchTerm, final int page, final int size);
+    public List<Book> findBySearchTerm(final String titleSearch, final String authorSearch);
+
+    public List<Book> sortingBooks(List<Book> bookList, String field, Boolean alphabetical);
+
+    public Page<Book> pagination(List<Book> bookList, int page, int size);
 }

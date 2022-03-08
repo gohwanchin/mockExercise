@@ -8,10 +8,11 @@ public class Book implements Serializable {
     private String title;
     private String author;
     private String cover;
-    
-    public Book(){
+
+    public Book() {
         this.id = generateID(8);
     }
+
     public Book(String id, String title, String author, String cover) {
         this.id = id;
         this.title = title;
@@ -26,15 +27,15 @@ public class Book implements Serializable {
         this.cover = cover;
     }
 
-    private synchronized String generateID(int numChars){
+    private synchronized String generateID(int numChars) {
         Random r = new Random();
         StringBuilder strBuilder = new StringBuilder();
-        while(strBuilder.length() < numChars){
+        while (strBuilder.length() < numChars) {
             strBuilder.append(Integer.toHexString(r.nextInt()));
         }
-        return strBuilder.toString().substring(0,numChars);
+        return strBuilder.toString().substring(0, numChars);
     }
-    
+
     public String getId() {
         return id;
     }
@@ -66,5 +67,15 @@ public class Book implements Serializable {
     public void setCover(String cover) {
         this.cover = cover;
     }
-    
+
+    public String getField(String field) {
+        switch (field) {
+            case "title":
+                return title;
+            case "author":
+                return author;
+            default:
+                return "not found";
+        }
+    }
 }
