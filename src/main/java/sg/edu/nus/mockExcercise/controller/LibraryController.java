@@ -50,7 +50,12 @@ public class LibraryController {
         return "addBook";
     }
 
-    @GetMapping("/Search")
+    @GetMapping("/search")
+    public String searchForm() {
+        return "search";
+    }
+
+    @GetMapping("/searchResults")
     public String searchBooks(@RequestParam(defaultValue = "") String titleSearch,
             @RequestParam(defaultValue = "") String authorSearch,
             @RequestParam(defaultValue = "title") String field,
@@ -74,6 +79,6 @@ public class LibraryController {
         model.addAttribute("authorSearch", authorSearch);
         model.addAttribute("field", field);
         model.addAttribute("alphabetical", alphabetical);
-        return "titleSearchPage";
+        return "searchPage";
     }
 }
