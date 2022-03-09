@@ -4,5 +4,8 @@
 - [x] Title and author search page
 - [x] Sort buttons
 - [x] Show cover thumbnails
+- [x] Make search case insensitive
+- [ ] Use PagingandSorting Repository - create separate interface that extends it
+- [ ] Add dropdown to adjust pagination size - use onclick.submit()
 - [ ] Fix page number formatting
 - [ ] Image upload

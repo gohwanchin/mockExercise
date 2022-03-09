@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -50,13 +49,14 @@ public class BookRepo implements RedisRepo {
                 .filter(Book.class::isInstance).map(Book.class::cast)
                 .toList();
         logger.log(Level.INFO, "Books obtained");
-        // Filters book list based on search terms (case-senstive) and default sort
+        // Filters book list based on search terms (case-insenstive) and default sort
         // title A-Z
         List<Book> bookResults = books.stream()
-                .filter(book -> book.getTitle().contains(titleSearch))
-                .filter(book -> book.getAuthor().contains(authorSearch))
+                .filter(book -> book.getTitle().toLowerCase().contains(titleSearch.toLowerCase()))
+                .filter(book -> book.getAuthor().toLowerCase().contains(authorSearch.toLowerCase()))
                 .sorted(Comparator.comparing(Book::getTitle))
                 .collect(Collectors.toList());
+
         logger.log(Level.INFO, "Books filtered");
 
         return bookResults;

@@ -13,7 +13,7 @@ public interface RedisRepo {
 
     public Book findByBookId(final String bookId);
 
-    public List<Book> findBySearchTerm(final String titleSearch, final String authorSearch);
+    public List<Book> findBySearchTerm(String titleSearch, String authorSearch);
 
     public List<Book> sortingBooks(List<Book> bookList, String field, Boolean alphabetical);
 
