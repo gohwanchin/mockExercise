@@ -6,6 +6,6 @@
 - [x] Show cover thumbnails
 - [x] Make search case insensitive
 - [ ] Use PagingandSorting Repository - create separate interface that extends it
-- [ ] Add dropdown to adjust pagination size - use onclick.submit()
+- [ ] Add dropdown to adjust pagination size - use onclick.submit(), action includes the query strings
 - [ ] Fix page number formatting
 - [ ] Image upload

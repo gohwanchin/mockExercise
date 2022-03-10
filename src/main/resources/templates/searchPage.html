@@ -25,6 +25,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- each statement is on the table row because that's what we're repeating -->
             <tr th:each="book: ${bookPage.content}">
                 <td th:text="${book.id}" />
                 <td th:text="${book.title}" />
