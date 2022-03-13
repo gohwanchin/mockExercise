@@ -22,21 +22,23 @@ public class RedisConfig {
     @Value("${spring.redis.port}")
     private Optional<Integer> redisPort;
 
-    //Uncomment for Redis Cloud
-    //@Value("${spring.redis.password}")
-    //private String redisPassword;
+    // Uncomment for Redis Cloud
+    // @Value("${spring.redis.password}")
+    // private String redisPassword;
 
     @Bean
     @Scope("singleton")
-    public RedisTemplate<String, Object> redisTemplate(){
+    public RedisTemplate<String, Object> redisTemplate() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
 
         config.setHostName(redisHost);
         config.setPort(redisPort.get());
-        //config.setPassword(redisPassword);
+        // config.setPassword(redisPassword);
 
-        final JedisClientConfiguration jedisClient = JedisClientConfiguration.builder().build();
-        final JedisConnectionFactory jedisFac = new JedisConnectionFactory(config, jedisClient);
+        final JedisClientConfiguration jedisClient = JedisClientConfiguration
+                .builder().build();
+        final JedisConnectionFactory jedisFac = new JedisConnectionFactory(
+                config, jedisClient);
         jedisFac.afterPropertiesSet();
 
         RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
@@ -44,10 +46,10 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
 
-        RedisSerializer<Object> serializer
-            = new JdkSerializationRedisSerializer(getClass().getClassLoader());
+        RedisSerializer<Object> serializer = new JdkSerializationRedisSerializer(
+                getClass().getClassLoader());
         template.setValueSerializer(serializer);
-        
+
         return template;
     }
 }

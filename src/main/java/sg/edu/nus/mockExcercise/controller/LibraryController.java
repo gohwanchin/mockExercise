@@ -31,7 +31,8 @@ public class LibraryController {
     }
 
     @GetMapping("/idSearch")
-    public String findById(@RequestParam(name = "bookId") String bookId, Model model) {
+    public String findById(@RequestParam(name = "bookId") String bookId,
+            Model model) {
         Book book = service.findByBookId(bookId);
         model.addAttribute("book", book);
         return "showBook";
@@ -56,12 +57,13 @@ public class LibraryController {
     }
 
     @GetMapping("/searchResults")
-    public String searchBooks(@RequestParam(defaultValue = "") String titleSearch,
+    public String searchBooks(
+            @RequestParam(defaultValue = "") String titleSearch,
             @RequestParam(defaultValue = "") String authorSearch,
             @RequestParam(defaultValue = "title") String field,
             @RequestParam(defaultValue = "true") Boolean alphabetical,
-            @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size,
-            Model model) {
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "2") int size, Model model) {
         List<Book> books = service.findBySearchTerm(titleSearch, authorSearch);
         logger.log(Level.INFO, "Result size: " + books.size());
 

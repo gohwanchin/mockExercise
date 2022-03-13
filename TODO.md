@@ -5,7 +5,8 @@
 - [x] Sort buttons
 - [x] Show cover thumbnails
 - [x] Make search case insensitive
+- [x] Test Redis Cloud
+- [x] Add dropdown to adjust pagination size - use onchange.submit()
 - [ ] Use PagingandSorting Repository - create separate interface that extends it
-- [ ] Add dropdown to adjust pagination size - use onclick.submit(), action includes the query strings
 - [ ] Fix page number formatting
 - [ ] Image upload

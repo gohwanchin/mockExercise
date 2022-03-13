@@ -54,6 +54,22 @@
     size=${bookPage.size}, page=${bookPage.number})}">
         <button>Sort author Z-A</button>
     </a>
+    <form action="/searchResults" method="get">
+        <input type="hidden" name="titleSearch" th:value="${titleSearch}">
+        <input type="hidden" name="authorSearch" th:value="${authorSearch}">
+        <input type="hidden" name="field" th:value="${field}">
+        <input type="hidden" name="alphabetical" th:value="${alphabetical}">
+        <input type="hidden" name="page" th:value="${bookPage.number}">
+
+        <p>Page size:
+            <select name="size" id="size" onchange="this.form.submit()">
+                <option value="" selected="selected">--</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+            </select>
+        </p>
+    </form>
     <div th:if="${bookPage.totalPages > 0}" class="pagination" th:each="pageNumber: ${pageNumbers}">
         <a th:href="@{/searchResults(titleSearch=${titleSearch}, authorSearch=${authorSearch},
         field=${field}, alphabetical=${alphabetical},
